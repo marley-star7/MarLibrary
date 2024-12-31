@@ -1,0 +1,8 @@
+A bunch of functions and fixes I use between my mods and likely will in the future.
+So in order to save YOUR RAM and MY time I made this.
+
+A mod required by a mod, mainly this one:
+https://steamcommunity.com/sharedfiles/filedetails/?id=3139034529
+and soon to be the blind one too likely once I update.
+
+Just to be safe I'd load this early in load order, before any of my mods.

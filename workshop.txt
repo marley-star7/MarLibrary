@@ -1,0 +1,13 @@
+version=1
+id=3132520376
+title=Mar Library
+description=A bunch of functions and fixes I use between my mods and likely will in the future.
+description=So in order to save YOUR RAM and MY time I made this.
+description=
+description=A mod required by a mod, mainly this one:
+description=https://steamcommunity.com/sharedfiles/filedetails/?id=3139034529
+description=and soon to be the blind one too likely once I update.
+description=
+description=Just to be safe I'd load this early in load order, before any of my mods.
+tags=Build 41;Framework
+visibility=public
