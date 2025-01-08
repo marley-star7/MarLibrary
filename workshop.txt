@@ -9,5 +9,5 @@ description=https://steamcommunity.com/sharedfiles/filedetails/?id=3139034529
 description=and soon to be the blind one too likely once I update.
 description=
 description=Just to be safe I'd load this early in load order, before any of my mods.
-tags=Build 41;Framework
+tags=Build 41;Build 42;Framework
 visibility=public
