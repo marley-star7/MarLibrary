@@ -45,20 +45,40 @@ end
 Events.OnPlayerUpdate.Add(onPlayerUpdateByDelta)
 
 MarLibrary.Events.OnPlayerMoveSquare = MarLibrary.Event.new()
+MarLibrary.Events.OnPlayerMoveRoom = MarLibrary.Event.new()
 
 local playerSquare = nil
-local function onPlayerMoveSquare(player)
+local playerRoomDef = nil
+
+local function onPlayerMoveSquareRoomUpdate(player)
     if not player:isPlayerMoving() then return end
     local newPlayerSquare = player:getSquare()
-    if newPlayerSquare == playerSquare then return end
-    playerSquare = newPlayerSquare
-    -- Trigger all registered functions for this event
-    for _, event in ipairs(MarLibrary.Events.OnPlayerMoveSquare) do
-        local func = event[2]
-        func(player, playerSquare)
+    if newPlayerSquare ~= playerSquare then
+
+        playerSquare = newPlayerSquare
+        -- Trigger all registered functions for move square event
+        for _, event in ipairs(MarLibrary.Events.OnPlayerMoveSquare) do
+            local func = event[2]
+            func(player, playerSquare)
+        end
+
+        -- Check if room has changed inbetween squares.
+        local newPlayerRoomDef = player:getCurrentRoomDef()
+        if newPlayerRoomDef ~= playerRoomDef then 
+            playerRoomDef = newPlayerRoomDef
+            -- Trigger all registered functions for move room event
+            for _, event in ipairs(MarLibrary.Events.OnPlayerMoveRoom) do
+                local func = event[2]
+                func(player, playerRoomDef)
+            end
+        end
+
     end
 end
-Events.OnPlayerUpdate.Add(onPlayerMoveSquare)
+Events.OnPlayerUpdate.Add(onPlayerMoveSquareRoomUpdate)
+
+MarLibrary.Events.OnPlayerMoveRoom = MarLibrary.Event.new()
+
 
 MarLibrary.Events.OnZombieGrabBiteAttemptOnPlayer = MarLibrary.Event.new()
 
