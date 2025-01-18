@@ -77,8 +77,20 @@ local function onPlayerMoveSquareRoomUpdate(player)
 end
 Events.OnPlayerUpdate.Add(onPlayerMoveSquareRoomUpdate)
 
-MarLibrary.Events.OnPlayerMoveRoom = MarLibrary.Event.new()
+MarLibrary.Events.OnPlayerDoTimedAction = MarLibrary.Event.new()
 
+local function onPlayerDoTimedActionUpdate(player)
+    if player:hasTimedActions() then
+		local actions = player:getCharacterActions()
+		local action = actions:get(0)
+
+        for _, event in ipairs(MarLibrary.Events.OnPlayerDoTimedAction) do
+            local func = event[2]
+            func(player, action)
+        end
+    end
+end
+Events.OnPlayerUpdate.Add(onPlayerDoTimedActionUpdate)
 
 MarLibrary.Events.OnZombieGrabBiteAttemptOnPlayer = MarLibrary.Event.new()
 

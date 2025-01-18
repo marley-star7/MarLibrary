@@ -181,10 +181,9 @@ local function checkPlayerTimedActionSpecificSpeedMods(player, actionType)
 	return speedMod
 end
 
-local function timedActionSpeedUpdate(player)
+local function timedActionSpeedUpdate(player, action)
 	if player:hasTimedActions() then
-		local actions = player:getCharacterActions()
-		local action = actions:get(0)
+
 		local type = action:getMetaType()
 		--print("Current action name is (" .. type .. ")")
 		local delta = action:getJobDelta()
@@ -200,4 +199,4 @@ local function timedActionSpeedUpdate(player)
 	end
 end
 
-Events.OnPlayerUpdate.Add(timedActionSpeedUpdate)
+MarLibrary.Events.OnPlayerDoTimedAction:Add("timedActionSpeedUpdate", timedActionSpeedUpdate)
